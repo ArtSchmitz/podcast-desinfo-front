@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { Container, Row, Title } from "./styles";
+import { Container, Row, Header } from "./styles";
 
 export default function Desinformacao() {
   const { data: videos, error } = useSWR("http://127.0.0.1:8000/api/podcast-desinfo",async (url) => {
@@ -19,10 +19,10 @@ export default function Desinformacao() {
 
   return (
     <Container>
-      <Title>
+      <Header>
         <h1>Podcast <span>desinformação</span></h1>
         <a href="/">Voltar</a>
-      </Title>
+      </Header>
       <ul>
         {videos.map((video) => (
           <li key={video.id}>

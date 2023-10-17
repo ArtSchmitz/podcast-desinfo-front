@@ -5,7 +5,7 @@ export const Container = styled.div`
   background-color: #141414;
 `;
 
-export const Title = styled.div`
+export const Header = styled.div`
   background-color: #000;
   width: 100%;
   height: 100px;
