@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import { Container, Row, Header } from "./styles";
+import Link from "next/link";
 
 export default function Desinformacao() {
   const { data: videos, error } = useSWR("http://127.0.0.1:8000/api/podcast-desinfo",async (url) => {
@@ -21,7 +22,7 @@ export default function Desinformacao() {
     <Container>
       <Header>
         <h1>Podcast <span>desinformação</span></h1>
-        <a href="/">Voltar</a>
+        <Link href="/">Voltar</Link>
       </Header>
       <ul>
         {videos.map((video) => (
@@ -31,7 +32,7 @@ export default function Desinformacao() {
               <iframe
                 width="560"
                 height="315"
-                src={`https://www.youtube.com/embed/${video.video_id}`}
+                src={`https://www.youtube.com/embed/${video.video_url}`}
                 title={video.title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 frameBorder="0"
