@@ -1,14 +1,10 @@
 import useSWR from "swr";
 import { Container, Row, Header } from "./styles";
 import Link from "next/link";
+import { fetchAPI } from "../fetch";
 
 export default function Desinformacao() {
-  const { data: videos, error } = useSWR("http://127.0.0.1:8000/api/podcast-desinfo",async (url) => {
-      const response = await fetch(url);
-      const data = await response.json();
-      return data;
-    }
-  );
+  const { data: videos, error } = fetchAPI('podcast-desinfo')
 
   if (error) {
     return <div>Opss.. {error.message}</div>;
@@ -26,20 +22,18 @@ export default function Desinformacao() {
       </Header>
       <ul>
         {videos.map((video) => (
-          <li key={video.id}>
-            <Row>
-              <h2>{video.title}</h2>
-              <iframe
-                width="560"
-                height="315"
-                src={`https://www.youtube.com/embed/${video.video_url}`}
-                title={video.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                frameBorder="0"
-                allowFullScreen
-              ></iframe>
-            </Row>
-          </li>
+          <Row>
+            <h2>{video.title}</h2>
+            <iframe
+              width="560"
+              height="315"
+              src={`https://www.youtube.com/embed/${video.video_url}`}
+              title={video.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              frameBorder="0"
+              allowFullScreen
+            ></iframe>
+          </Row>
         ))}
       </ul>
     </Container>

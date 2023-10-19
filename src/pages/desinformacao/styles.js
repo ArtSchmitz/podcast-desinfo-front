@@ -28,6 +28,10 @@ export const Header = styled.div`
     text-decoration: none;
     font-size: 20px;
   }
+
+  a:hover {
+    color: #FFC739;
+  }
 `;
 
 export const Row = styled.div`
