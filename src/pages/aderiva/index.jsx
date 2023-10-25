@@ -1,8 +1,9 @@
 import React from "react";
 import { fetchAPI } from "../fetch";
+import { Container, Row, Header } from "./styles";
 
 export default function Aderiva() {
-  const { data: videos, error } = fetchAPI("podcast-aderiva");
+  const { data: videos, error } = fetchAPI("/podcast-aderiva");
 
   if (error) {
     return <div>Opss.. {error.message}</div>;
@@ -13,11 +14,13 @@ export default function Aderiva() {
   }
 
   return (
-    <>
-      <h1>Aderiva Podcast</h1>
+    <Container>
+      <Header>
+        <h1>Aderiva Podcast</h1>
+      </Header>
       <ul>
         {videos.map((video) => (
-          <div className="lindonjonson">
+          <Row>
             <h2>{video.title}</h2>
             <iframe
               width="560"
@@ -28,9 +31,9 @@ export default function Aderiva() {
               frameBorder="0"
               allowFullScreen
             ></iframe>
-          </div>
+          </Row>
         ))}
       </ul>
-    </>
+    </Container>
   );
 }

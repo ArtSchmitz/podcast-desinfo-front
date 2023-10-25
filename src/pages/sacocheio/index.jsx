@@ -1,9 +1,7 @@
-import Link from "next/link";
 import { fetchAPI } from "../fetch";
-import { Container, Row, Header } from "./styles";
 
-export default function Desinformacao() {
-  const { data: videos, error } = fetchAPI('/podcast-desinfo')
+export default function SacoCheio() {
+  const { data: videos, error } = fetchAPI('/podcast-saco-cheio');
 
   if (error) {
     return <div>Opss.. {error.message}</div>;
@@ -14,14 +12,10 @@ export default function Desinformacao() {
   }
 
   return (
-    <Container>
-      <Header>
-        <h1>Podcast <span>desinformação</span></h1>
-        <Link href="/">Voltar</Link>
-      </Header>
+    <div>
       <ul>
         {videos.map((video) => (
-          <Row>
+          <>
             <h2>{video.title}</h2>
             <iframe
               width="560"
@@ -31,10 +25,10 @@ export default function Desinformacao() {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               frameBorder="0"
               allowFullScreen
-            ></iframe>
-          </Row>
+              ></iframe>
+            </>
         ))}
       </ul>
-    </Container>
-  );
+    </div>
+  )
 }
