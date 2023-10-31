@@ -1,7 +1,7 @@
 import useSWR from "swr";
 
 export const fetchAPI = (endpoint) => {
-  const api = process.env.API_KEY+endpoint;
+  const api = `http://127.0.0.1:8000/api${endpoint}`;
 
   const { data, error } = useSWR(api, async (url) => {
     const res = await fetch(url);
