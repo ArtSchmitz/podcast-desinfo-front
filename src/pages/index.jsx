@@ -37,7 +37,7 @@ export default function Home() {
         </SectionOne>
 
         <SectionTwo>
-
+        
         </SectionTwo>
       </main>
     </>

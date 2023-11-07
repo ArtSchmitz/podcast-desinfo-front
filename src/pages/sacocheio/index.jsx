@@ -1,7 +1,14 @@
 import { fetchAPI } from "../fetch";
+import { Container } from "././styles";
+
+import HeaderComponent from "@/components/HeaderComponent";
+import VideoComponent from "@/components/VideoComponent";
 
 export default function SacoCheio() {
-  const { data: videos, error } = fetchAPI('/podcast-saco-cheio');
+  const { data: videos, error } = fetchAPI("/podcast-saco-cheio");
+  const { data: infos } = fetchAPI("/saco-cheio-info");
+
+  const channelName = infos?.channel_name;
 
   if (error) {
     return <div>Opss.. {error.message}</div>;
@@ -12,23 +19,11 @@ export default function SacoCheio() {
   }
 
   return (
-    <div>
-      <ul>
-        {videos.map((video) => (
-          <>
-            <h2>{video.title}</h2>
-            <iframe
-              width="560"
-              height="315"
-              src={`https://www.youtube.com/embed/${video.video_url}`}
-              title={video.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              frameBorder="0"
-              allowFullScreen
-              ></iframe>
-            </>
-        ))}
-      </ul>
-    </div>
-  )
+    <Container>
+      <HeaderComponent channel_name={channelName} />
+      {videos?.map((video) => (
+        <VideoComponent video_title={video.title} video_url={video.video_url} />
+      ))}
+    </Container>
+  );
 }

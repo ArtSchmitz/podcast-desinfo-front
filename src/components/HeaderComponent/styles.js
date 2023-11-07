@@ -10,21 +10,17 @@ export const Header = styled.div`
 
   h1 {
     padding: 50px;
-    color: #fff;
-  }
-
-  span {
     color: #FFC739;
   }
 
   a{
-    color: #fff;
+    color: #FFC739;
     padding-right: 100px;
     text-decoration: none;
     font-size: 20px;
   }
 
   a:hover {
-    color: #FFC739;
+    color: #fff;
   }
 `;

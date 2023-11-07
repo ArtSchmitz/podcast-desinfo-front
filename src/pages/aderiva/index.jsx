@@ -1,12 +1,14 @@
 import React from "react";
 import { fetchAPI } from "../fetch";
 import { Container } from "././styles";
+
 import VideoComponent from "@/components/VideoComponent";
 import HeaderComponent from "@/components/HeaderComponent";
 
 export default function Aderiva() {
   const { data: videos, error } = fetchAPI("/podcast-aderiva");
   const { data: infos } = fetchAPI("/aderiva-info");
+
   const channelName = infos?.channel_name;
 
   if (error) {
